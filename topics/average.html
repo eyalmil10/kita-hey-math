@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ממוצע</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">x̄</div>
+          <div>
+            <h1>ממוצע</h1>
+            <p class="subtitle">משחק: מחשבים ממוצע — מתחילים ממספר אחד ומתקדמים עד 6 מספרים.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>השאלה</h2>
+
+        <div class="hint" id="timerBox" aria-live="polite">
+          זמן שנותר: <strong id="timeLeft">60</strong> שניות
+        </div>
+
+        <div style="margin-top: 10px; display:grid; gap: 8px;">
+          <div class="row" style="justify-content: space-between;">
+            <span class="muted" id="levelLabel">רמה: 1 מספר</span>
+            <span class="muted" id="qCounter">שאלה 0</span>
+          </div>
+          <div class="progress" aria-label="התקדמות רמות">
+            <div class="bar" id="levelProgress" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="topic" style="margin-top: 12px;">
+          <div class="row" style="align-items: flex-start;">
+            <div>
+              <h3 class="big-question" id="questionTitle">טוען שאלה…</h3>
+            </div>
+            <div class="badges" aria-label="סטטוס">
+              <span class="badge" id="scoreBadge">נכונות: 0</span>
+            </div>
+          </div>
+
+          <div style="display: grid; gap: 10px; margin-top: 10px;">
+            <label class="muted" for="answerInput">התשובה (ממוצע):</label>
+            <input
+              id="answerInput"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="לדוגמה: 4"
+              style="padding: 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.18); color: var(--text); font-size: 16px;"
+            />
+
+            <div class="row">
+              <button class="btn" id="submitBtn" type="button">בדקי</button>
+              <button class="ghost" id="giveUpBtn" type="button">נגמר הזמן / אני מוותרת</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="feedbackCard" style="display:none;">
+        <h2>תוצאה והסבר</h2>
+        <div class="hint result-anim" id="feedbackBox" aria-live="polite">
+          <div class="confetti" id="confetti" aria-hidden="true"></div>
+        </div>
+        <div style="margin-top: 12px; display: grid; gap: 10px;">
+          <div class="muted" id="explanation"></div>
+          <div class="row">
+            <button class="btn" id="nextBtn" type="button">שאלה הבאה</button>
+            <a class="ghost" href="../index.html">חזרה לדף הבית</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>חזרה לדף הבית</h2>
+        <a class="btn" href="../index.html">חזרה</a>
+      </section>
+    </main>
+
+    <!-- Shared app (storage/stats helpers) -->
+    <script src="../app.js"></script>
+    <!-- Game logic -->
+    <script src="./average.js"></script>
+  </body>
+</html>

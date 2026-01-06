@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>חשבון לכיתה ה׳ – דף הבית</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">Σ</div>
+          <div>
+            <h1>חשבון לכיתה ה׳</h1>
+            <p class="subtitle">בחרי נושא לתרגול. כל נושא ייפתח באותו הטאב.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>נושאים</h2>
+        <div class="grid" id="topicsGrid" aria-label="רשימת נושאים"></div>
+
+        <div class="hint" role="note">
+          טיפ: כדי לחזור לדף הבית השתמשי בכפתור “חזרה” בתוך הנושא.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>התקדמות</h2>
+        <p class="muted">בגרסה הזאת אנחנו רק מקימים את השלד. בהמשך נוכל להוסיף תרגילים, ניקוד, ורמות קושי.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="muted">נבנה עבור תרגול אינטראקטיבי – ינואר 2026</span>
+        <button class="ghost" id="resetProgressBtn" type="button">איפוס סימוני “התחלתי”</button>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
