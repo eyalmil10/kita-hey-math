@@ -267,6 +267,13 @@ function finishQuestion({ chosenKey, reason }){
   const correctKey = current.correctKey;
   const isCorrect = chosenKey !== null && chosenKey === correctKey;
 
+  // Sound feedback
+  if(isCorrect){
+    window.NeomiSFX?.success?.();
+    window.NeomiFX?.fullscreenCelebrate?.({ durationMs: 2000 });
+  }
+  else window.NeomiSFX?.fail?.();
+
   if(isCorrect){
     window.NeomiMath?.bumpCorrect(TOPIC_ID);
     level = Math.min(3, level + 1);
@@ -285,6 +292,7 @@ function finishQuestion({ chosenKey, reason }){
   ui.feedbackBox.innerHTML = `
     <div style="display:grid; gap: 6px;">
       <div><strong>${headline ? headline + " " : ""}${okText}</strong></div>
+      ${isCorrect ? `<div style="font-size: 18px;"><strong>👏 בול במקום!</strong></div>` : ""}
       <div class="muted">השבר: <strong>${current.n}/${current.d}</strong></div>
       <div class="muted">התשובה שלך: <strong>${chosenKey ? labelForKey(chosenKey) : "(אין)"}</strong></div>
       <div class="muted">התשובה הנכונה: <strong>${labelForKey(correctKey)}</strong></div>

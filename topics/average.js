@@ -199,6 +199,13 @@ function finishQuestion({ userAnswer, reason }){
   // Accept exact integer match. (We currently generate integer averages.)
   const isCorrect = ans !== null && Math.abs(ans - correct) < 1e-9;
 
+  // Sound feedback
+  if(isCorrect){
+    window.NeomiSFX?.success?.();
+    window.NeomiFX?.fullscreenCelebrate?.({ durationMs: 2000 });
+  }
+  else window.NeomiSFX?.fail?.();
+
   if(isCorrect){
     window.NeomiMath?.bumpCorrect(TOPIC_ID);
     level = Math.min(6, level + 1);
@@ -219,6 +226,7 @@ function finishQuestion({ userAnswer, reason }){
   ui.feedbackBox.innerHTML = `
     <div style="display:grid; gap: 6px;">
       <div><strong>${headline ? headline + " " : ""}${okText}</strong></div>
+      ${isCorrect ? `<div style="font-size: 18px;"><strong>👏 אלופה!</strong></div>` : ""}
       <div class="muted">התשובה שלך: <strong>${ans === null ? "(אין)" : ans}</strong></div>
       <div class="muted">התשובה הנכונה: <strong>${correct}</strong></div>
     </div>

@@ -245,6 +245,13 @@ function finishQuestion({ userAnswer, reason }){
 
   const valid = intAnswer !== null && isValidCommonDenominator(intAnswer, d1, d2);
 
+  // Sound feedback (will work after user gesture)
+  if(valid){
+    window.NeomiSFX?.success?.();
+    window.NeomiFX?.fullscreenCelebrate?.({ durationMs: 2000 });
+  }
+  else window.NeomiSFX?.fail?.();
+
   if(valid){
     window.NeomiMath?.bumpCorrect(TOPIC_ID);
     // Increase difficulty after a correct answer, up to level 2.
@@ -270,6 +277,7 @@ function finishQuestion({ userAnswer, reason }){
   ui.feedbackBox.innerHTML = `
     <div style="display:grid; gap: 6px;">
       <div><strong>${headline ? headline + " " : ""}${okText}</strong></div>
+      ${valid ? `<div style="font-size: 18px;"><strong>👏 כל הכבוד!</strong></div>` : ""}
       <div class="muted">השברים היו: <strong>${formatFrac(current.f1)}</strong> ו-<strong>${formatFrac(current.f2)}</strong></div>
       <div class="muted">התשובה שלך: <strong>${intAnswer === null ? "(אין)" : intAnswer}</strong></div>
     </div>

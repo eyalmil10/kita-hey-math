@@ -233,6 +233,13 @@ function finishQuestion({ userAnswer, reason }){
     isCorrect = (uRed.g === 1) && (uRed.n === correctFrac.n) && (uRed.d === correctFrac.d);
   }
 
+  // Sound feedback
+  if(isCorrect){
+    window.NeomiSFX?.success?.();
+    window.NeomiFX?.fullscreenCelebrate?.({ durationMs: 2000 });
+  }
+  else window.NeomiSFX?.fail?.();
+
   if(isCorrect){
     window.NeomiMath?.bumpCorrect(TOPIC_ID);
     level = Math.min(3, level + 1);
@@ -250,6 +257,7 @@ function finishQuestion({ userAnswer, reason }){
   ui.feedbackBox.innerHTML = `
     <div style="display:grid; gap: 6px;">
       <div><strong>${headline ? headline + " " : ""}${okText}</strong></div>
+      ${isCorrect ? `<div style="font-size: 18px;"><strong>👏 וואו! יפה!</strong></div>` : ""}
       <div class="muted">השבר היה: <strong>${current.n}/${current.d}</strong></div>
       <div class="muted">התשובה שלך: <strong>${user ? formatFrac(user) : "(לא בפורמט a/b)"}</strong></div>
       <div class="muted">התשובה המצומצמת: <strong>${formatFrac(correctFrac)}</strong></div>
